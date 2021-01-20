@@ -52,6 +52,7 @@ class BotToast {
   ///[hideCloseButton] 是否隐藏关闭按钮
   ///[align] ToastContent区域在MainContent区域的对齐
   ///[dismissDirections] 能进行滑动关闭的方向
+  ///[enableSafeArea] 是否启用安全区
   ///[onTap] 点击通知Toast的回调
   ///[onLongPress] 长按通知Toast的回调
   ///[wrapAnimation] 请看[showAnimationWidget.wrapAnimation],默认值为null
@@ -82,6 +83,7 @@ class BotToast {
         DismissDirection.horizontal,
         DismissDirection.up
       ],
+      bool enableSafeArea = true,
       Icon closeIcon,
       Duration duration = const Duration(seconds: 2),
       Duration animationDuration,
@@ -98,6 +100,7 @@ class BotToast {
         wrapToastAnimation: wrapToastAnimation,
         align: align,
         dismissDirections: dismissDirections,
+        enableSafeArea: enableSafeArea,
         duration: duration,
         enableKeyboardSafeArea: enableKeyboardSafeArea,
         backgroundColor: backgroundColor,
@@ -127,6 +130,7 @@ class BotToast {
   ///[enableSlideOff] 是否能滑动删除
   ///[align] ToastContent区域在MainContent区域的对齐
   ///[dismissDirections] 能进行滑动关闭的方向
+  ///[enableSafeArea] 是否启用安全区
   ///[onTap] 点击通知Toast的回调
   ///[onLongPress] 长按通知Toast的回调
   ///[wrapAnimation] 请看[showAnimationWidget.wrapAnimation],默认值为null
@@ -157,6 +161,7 @@ class BotToast {
         DismissDirection.horizontal,
         DismissDirection.up
       ],
+      bool enableSafeArea = true,
       BackButtonBehavior backButtonBehavior,
       Duration duration = const Duration(seconds: 2),
       Duration animationDuration,
@@ -172,6 +177,7 @@ class BotToast {
         wrapToastAnimation: wrapToastAnimation,
         align: align,
         dismissDirections: dismissDirections,
+        enableSafeArea: enableSafeArea,
         enableSlideOff: enableSlideOff,
         enableKeyboardSafeArea: enableKeyboardSafeArea,
         onlyOne: onlyOne,
@@ -207,6 +213,7 @@ class BotToast {
   ///[enableSlideOff] 是否能滑动删除
   ///[align] ToastContent区域在MainContent区域的对齐
   ///[dismissDirections] 能进行滑动关闭的方向
+  ///[enableSafeArea] 是否启用安全区
   ///[wrapAnimation] 请看[showAnimationWidget.wrapAnimation],默认值为null
   ///[wrapToastAnimation] 请看[showAnimationWidget.wrapToastAnimation],默认值为[notificationAnimation]
   ///[animationDuration] 请看[showAnimationWidget.animationDuration]
@@ -226,6 +233,7 @@ class BotToast {
         DismissDirection.horizontal,
         DismissDirection.up
       ],
+      bool enableSafeArea = true,
       Duration duration = const Duration(seconds: 2),
       Duration animationDuration,
       Duration animationReverseDuration,
@@ -255,6 +263,9 @@ class BotToast {
           }
           if (align != null) {
             child = Align(alignment: align, child: child);
+          }
+          if (!(enableSafeArea ?? false)) {
+            return child;
           }
           return SafeArea(child: child);
         },
